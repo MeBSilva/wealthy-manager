@@ -8,5 +8,8 @@ export type LoadUserAuthInfoRepository = {
 
 export namespace LoadUserAuthInfoRepository {
   export type Params = Pick<User, "email">;
-  export type Result = Pick<User, "id" | "email" | "password" | "name">;
+  export type Result = Pick<
+    User,
+    "id" | "email" | "password" | "name" | "authorizationLevel"
+  > | null;
 }

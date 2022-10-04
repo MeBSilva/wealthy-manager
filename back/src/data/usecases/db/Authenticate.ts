@@ -27,6 +27,10 @@ export class DbAuthenticate implements Authenticate {
 
     const token = await this.encrypter.encrypt(userExists.id);
 
-    return { token, name: userExists.name };
+    return {
+      token,
+      name: userExists.name,
+      authorizationLevel: userExists.authorizationLevel,
+    };
   }
 }

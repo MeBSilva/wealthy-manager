@@ -6,5 +6,9 @@ export type Authenticate = {
 
 export namespace Authenticate {
   export type Params = Pick<User, "email" | "password">;
-  export type Result = { token: string; name: User["name"] };
+  export type Result = {
+    token: string;
+    name: User["name"];
+    authorizationLevel: User["authorizationLevel"];
+  };
 }

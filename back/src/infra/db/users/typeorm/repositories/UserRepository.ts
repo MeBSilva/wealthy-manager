@@ -56,8 +56,6 @@ export class UserRepository
       where: { email: data.email },
     });
 
-    if (!result) return {} as LoadUserAuthInfoRepository.Result;
-
     return result;
   }
 
