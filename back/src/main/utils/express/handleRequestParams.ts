@@ -14,7 +14,7 @@ export const handleRequestParams = (req: Request): any => {
 
 const parseRequestParams = (key: string, value: unknown) => {
   if (typeof value === "string") {
-    const regExp = /\d+$/;
+    const regExp = /^\d+$/;
 
     let parsedValue: string | number = value;
 

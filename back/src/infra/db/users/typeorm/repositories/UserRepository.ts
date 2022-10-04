@@ -2,6 +2,7 @@ import {
   CreateUserRepository,
   DeleteUserRepository,
   LoadUserAuthInfoRepository,
+  LoadUserByIdRepository,
   LoadUserRepository,
   UpdateUserRepository,
 } from "@/data/protocols/db";
@@ -17,6 +18,7 @@ export class UserRepository
     DeleteUserRepository,
     LoadUserAuthInfoRepository,
     LoadUserRepository,
+    LoadUserByIdRepository,
     UpdateUserRepository
 {
   public async create(
@@ -28,7 +30,7 @@ export class UserRepository
 
     const result = await repository.findOne({ where: { email: data.email } });
 
-    if (!result) return {} as CreateUserRepository.Result;
+    if (!result) throw new Error("Failed to create user");
 
     return result;
   }
@@ -39,7 +41,7 @@ export class UserRepository
     const repository = this.getRepository(User);
 
     await repository.delete({
-      email: data.email,
+      id: data.id,
     });
 
     return true;
@@ -59,6 +61,18 @@ export class UserRepository
     return result;
   }
 
+  public async loadById(
+    data: LoadUserByIdRepository.Params
+  ): Promise<LoadUserByIdRepository.Result> {
+    const repository = this.getRepository(User);
+
+    const result = await repository.findOne({
+      where: { id: data.id },
+    });
+
+    return result;
+  }
+
   public async load(
     data: LoadUserRepository.Params
   ): Promise<LoadUserRepository.Result> {
@@ -68,8 +82,6 @@ export class UserRepository
       where: { email: data.email },
     });
 
-    if (!result) return {} as LoadUserRepository.Result;
-
     return result;
   }
 
@@ -78,9 +90,16 @@ export class UserRepository
   ): Promise<UpdateUserRepository.Result> {
     const repository = this.getRepository(User);
 
-    await repository.update({ email: data.email }, data);
+    if (data.email)
+      await repository.update(
+        { id: data.id },
+        {
+          email: data.email,
+          name: data.name,
+        }
+      );
 
-    const result = await repository.findOne({ where: { email: data.email } });
+    const result = await repository.findOne({ where: { id: data.id } });
 
     if (!result) return {} as UpdateUserRepository.Result;
 

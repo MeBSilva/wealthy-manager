@@ -1,3 +1,5 @@
+import { EmailInUseError, UserNotFoundError } from "@/domain/errors";
+
 import {
   AccessDeniedError,
   InvalidParamError,
@@ -30,6 +32,10 @@ export const handleError = (err: unknown): Response<Error> => {
         return forbidden(err);
       case InvalidParamError.name:
         return badRequest(err);
+      case EmailInUseError.name:
+        return badRequest(err);
+      case UserNotFoundError.name:
+        return notFound(err);
       case MissingParamError.name:
         return badRequest(err);
       case NotFoundError.name:
@@ -39,6 +45,7 @@ export const handleError = (err: unknown): Response<Error> => {
       case ServerError.name:
         return serverError(err);
       default:
+        console.log(err);
         return serverError(err);
     }
   }

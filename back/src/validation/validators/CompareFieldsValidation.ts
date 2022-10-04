@@ -9,7 +9,7 @@ export class CompareFieldsValidation implements Validation {
 
   validate(input: any): Validation.Result {
     if (input[this.fieldName] !== input[this.fieldNameToBeCompared]) {
-      return new InvalidParamError(this.fieldNameToBeCompared);
+      return new InvalidParamError(this.fieldName);
     }
   }
 }

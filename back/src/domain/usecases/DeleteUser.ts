@@ -5,6 +5,6 @@ export type DeleteUser = {
 };
 
 export namespace DeleteUser {
-  export type Params = Pick<User, "email">;
+  export type Params = Pick<User, "id">;
   export type Result = boolean;
 }

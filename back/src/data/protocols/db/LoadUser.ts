@@ -6,5 +6,5 @@ export type LoadUserRepository = {
 
 export namespace LoadUserRepository {
   export type Params = GetUser.Params;
-  export type Result = GetUser.Result;
+  export type Result = GetUser.Result | null;
 }

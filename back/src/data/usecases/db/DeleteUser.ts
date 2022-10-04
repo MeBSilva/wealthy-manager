@@ -1,4 +1,7 @@
-import { DeleteUserRepository, LoadUserRepository } from "@/data/protocols/db";
+import {
+  DeleteUserRepository,
+  LoadUserByIdRepository,
+} from "@/data/protocols/db";
 
 import { UserNotFoundError } from "@/domain/errors";
 import { DeleteUser } from "@/domain/usecases";
@@ -6,12 +9,12 @@ import { DeleteUser } from "@/domain/usecases";
 export class DbDeleteUser implements DeleteUser {
   constructor(
     private readonly deleteUserRepository: DeleteUserRepository,
-    private readonly loadUserRepository: LoadUserRepository
+    private readonly loadUserRepository: LoadUserByIdRepository
   ) {}
 
   async delete(data: DeleteUser.Params): Promise<DeleteUser.Result> {
-    const userExists = await this.loadUserRepository.load({
-      email: data.email,
+    const userExists = await this.loadUserRepository.loadById({
+      id: data.id,
     });
 
     if (!userExists) throw new UserNotFoundError();

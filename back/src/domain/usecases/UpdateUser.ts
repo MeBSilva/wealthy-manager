@@ -5,6 +5,6 @@ export type UpdateUser = {
 };
 
 export namespace UpdateUser {
-  export type Params = Pick<User, "email">;
+  export type Params = Partial<User> & { id: User["id"] };
   export type Result = Omit<User, "password">;
 }
