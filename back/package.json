@@ -1,0 +1,46 @@
+{
+  "name": "wealthy-manager-back",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Property management application",
+  "author": "Matheus Brasil",
+  "type": "commonjs",
+  "scripts": {
+    "lint": "eslint src/**",
+    "test:types": "tsc --noEmit",
+    "test": "yarn jest -w 1",
+    "start": "ts-node -r tsconfig-paths/register ./src/main/index.ts",
+    "start:dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules ./src/main/index.ts"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1228.0",
+    "axios": "^0.27.2",
+    "bcrypt": "^5.0.1",
+    "date-fns": "^2.29.3",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.8.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.10"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^7.5.0",
+    "@types/bcrypt": "^5.0.0",
+    "@types/express": "^4.17.14",
+    "@types/jest": "^29.0.0",
+    "@types/jsonwebtoken": "^8.5.9",
+    "@types/node": "^18.7.16",
+    "@typescript-eslint/eslint-plugin": "^5.36.2",
+    "@typescript-eslint/parser": "^5.36.2",
+    "eslint": "^8.23.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^3.5.1",
+    "eslint-plugin-import": "^2.26.0",
+    "jest": "^29.0.3",
+    "ts-jest": "^29.0.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.6.4"
+  }
+}
