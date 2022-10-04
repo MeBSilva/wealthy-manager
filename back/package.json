@@ -10,7 +10,8 @@
     "test:types": "tsc --noEmit",
     "test": "yarn jest -w 1",
     "start": "ts-node -r tsconfig-paths/register ./src/main/index.ts",
-    "start:dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules ./src/main/index.ts"
+    "start:dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules ./src/main/index.ts",
+    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
   },
   "dependencies": {
     "aws-sdk": "^2.1228.0",
